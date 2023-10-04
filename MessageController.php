@@ -20,6 +20,14 @@
                 // example
                 // 123duq8.ktp.jpg
                 $new_file_name = uniqid()."_".$user_attachment['name'];
+
+
+                if(move_uploaded_file($user_attachment['tmp_name'], $target_directory.$new_file_name)){
+                    echo "upload success";
+                }
+                else{
+                    echo "upload failed";
+                }
             }
         }
         else if(isset($POST['delete'])){
