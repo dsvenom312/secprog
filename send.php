@@ -21,7 +21,8 @@
 
 <body class="hack dark">
     <div class="grid main-form">
-        <form class="form" method="POST" action="./controllers/MessageController.php">
+        <!-- enctype -> encoding biar data file nya bisa dibaca bisa dipecah kecil kecil -->
+        <form class="form" method="POST" action="./controllers/MessageController.php" enctype="multipart/form-data"> 
             <fieldset class="form-group">
                 <label for="username">Title:</label>
                 <input id="title" name="title" type="text" placeholder="" class="form-control">
@@ -43,7 +44,7 @@
 
             <fieldset class="form-group">
                 <label>Attachment: </label>
-                
+                <input type="file" name="user_attachment" class="form-control">
 
             </fieldset>
             <div class="form-actions">
