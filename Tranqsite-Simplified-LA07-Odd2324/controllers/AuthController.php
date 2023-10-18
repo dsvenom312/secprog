@@ -1,28 +1,20 @@
 <?php
     session_start();
 
-    $is_login = false;
+    require "connection.php";
 
-    var_dump($is_login == 0);
-    var_dump($is_login === 0);
 
-    $usernames = [
-      "admin",
-      "dalgona",
-      "parg29",
-      "matchalover",
-      "aseng",
-      "subwayodading"
-    ];
+    function dologin($username, $password){
 
-    $passwords = [
-        "admin",
-        "tidakbikinkembung",
-        "supershy",
-        "greentea",
-        "sepuh",
-        "$ugwey"
-    ];
+        global $conn;
+        // ini adalah cara yg unsafe
+        $query = "SELECT * from users WHERE username='$username' and password='$password';";
+
+        $result = $conn->query($query);
+
+        return $result;
+
+    }
 
     if ($_SERVER['REQUEST_METHOD'] === "POST") {
 
@@ -32,20 +24,26 @@
         // var_dump($username);
         // var_dump($password);
 
-        for ($i = 0; $i < count($usernames); $i++) {
-            if ($username === $usernames[$i] && $password === $passwords[$i]) {
-                $is_login = true;
-                break;
-            }
-        }
+        // for ($i = 0; $i < count($usernames); $i++) {
+        //     if ($username === $usernames[$i] && $password === $passwords[$i]) {
+        //         $is_login = true;
+        //         break;
+        //     }
+        // }
 
-        if ($is_login) {
-           $_SESSION["success_message"] = "Welcome, $username";
+        $loginresult = dologin($username, $password);
 
-           $_SESSION['is_login'] = true;
-           $_SESSION['username'] = $username;
+        if ($loginresult->num_rows == 1) {
+            $data = $loginresult->fetch_assoc();
 
-           header("Location: ../messages.php");
+            $_SESSION["success_message"] = "Welcome, $username";
+
+            $_SESSION['is_login'] = true;
+            $_SESSION['username'] = $data["username"];
+            $_SESSION['role'] = $data["role"];
+            $_SESSION['fullname'] = $data["fullname"];
+
+            header("Location: ../messages.php");
 
         }
         else {
