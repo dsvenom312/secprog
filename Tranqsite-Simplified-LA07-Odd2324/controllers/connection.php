@@ -5,14 +5,11 @@
         $config["server"],
         $config["username"],
         $config["password"],
-        $config["database"],
+        $config["database"]
     );
 
-    if($conn->connect_error){
-        die("Cannot connect to db");
+    // if ($conn->connect_error) {
+    //     die("Cannot connect to database.");
+    // }
 
-    }
-
-    
-    
 ?>
