@@ -48,10 +48,10 @@
                 <label for="message">Message:</label>
                 <textarea id="message" rows="5" class="form-control" name="message"></textarea>
             </fieldset>
-            <fieldset class="form-group">
+            <!-- <fieldset class="form-group">
                 <label>Attachment: </label>
                 <input type="file" name="user_attachment" class="form-control">
-            </fieldset>
+            </fieldset> -->
             <div class="form-actions">
                 <input type="submit" class="btn btn-primary btn-block btn-ghost" name="send" />
             </div>

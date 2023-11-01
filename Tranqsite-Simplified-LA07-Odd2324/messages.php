@@ -30,13 +30,43 @@
 
 <body class="hack dark">
     <div class="grid main-form">
-        <div>
-            <h1>Account</h1>
-            <div class="card">
-                <header class="card-header">Someone</header>
-                <header class="card-header">someone.ao@gmail.com</header>
-            </div>
-        </div>
+            <?php
+        // Your database connection settings
+        $host = "127.0.0.1";
+        $username = "root";
+        $password = "";
+        $database = "tranqsite";
+
+        // Create a database connection
+            $conn = new mysqli($host, $username, $password, $database);
+
+            if ($conn->connect_error) {
+                die("Database connection failed: " . $conn->connect_error);
+            }
+                // Perform a SELECT query to retrieve messages from the communications table
+        $sql = "SELECT * FROM communications";
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            // Output the messages in your desired HTML format
+            while ($row = $result->fetch_assoc()) {
+                echo '<div>';
+                echo '<h1>Account</h1>';
+                echo '<div class="card">';
+                echo '<header class="card-header">Sender ID: ' . $row["sender_id"] . '</header>';
+                echo '<header class="card-header">Recipient ID: ' . $row["recipient_id"] . '</header>';
+                echo '<p>Message: ' . $row["message"] . '</p>';
+                echo '<p>Sent At: ' . $row["send_at"] . '</p>';
+                echo '</div>';
+                echo '</div>';
+            }
+        } else {
+            echo "No messages found in the database.";
+        }
+
+// Close the database connection
+$conn->close();
+?>
         <br><br>
         <div>
             <h1>Messages</h1>
