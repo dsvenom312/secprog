@@ -1,6 +1,6 @@
 <?php
     session_start();
-
+    print_r($_SESSION); 
     if ($_SESSION['is_login'] !== true) {
       header("Location: login.php");  
     }
@@ -48,7 +48,6 @@
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
-            // Output the messages in your desired HTML format
             while ($row = $result->fetch_assoc()) {
                 echo '<div>';
                 echo '<h1>Account</h1>';

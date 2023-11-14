@@ -6,7 +6,7 @@
             $title = $_POST['title'];
             $recipient = $_POST['recipient'];
             $message = $_POST['message'];
-            $sender_id = $_SESSION['user_id'];
+            $sender_id = $_SESSION['id'];
 
             // $user_attachment = $_FILES['user_attachment'];
 
