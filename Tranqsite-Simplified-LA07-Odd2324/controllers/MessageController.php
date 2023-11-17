@@ -1,5 +1,7 @@
 <?php
     session_start();
+    require "./connection.php";
+
 
     if ($_SERVER['REQUEST_METHOD'] === "POST") {
         if (isset($_POST['send'])) {
@@ -8,23 +10,6 @@
             $message = $_POST['message'];
             $sender_id = $_SESSION['id'];
 
-            // $user_attachment = $_FILES['user_attachment'];
-
-                // Your database connection settings
-        $host = "127.0.0.1";
-        $username = "root";
-        $password = "";
-        $database = "tranqsite";
-
-        // Create a database connection
-        $conn = new mysqli($host, $username, $password, $database);
-
-        if ($conn->connect_error) {
-            die("Database connection failed: " . $conn->connect_error);
-        }
-
-        // Insert the message into the communications table
-        // $sender_id = 1; // You'll need to set the appropriate sender ID
         $send_at = date('Y-m-d H:i:s'); // Current date and time
 
         $sql = "INSERT INTO communications (sender_id, recipient_id, title, message, send_at)

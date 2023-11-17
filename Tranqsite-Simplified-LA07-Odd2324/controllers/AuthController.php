@@ -4,12 +4,6 @@
 
     function doLogin($username, $password) {
         global $conn;
-
-        // ini cara yang unsafe.
-        // $query = "SELECT * FROM users WHERE username='$username' AND password='$password';";
-
-
-
         //ini prepared statement
         $query = "SELECT * FROM users WHERE username=? AND password=?;";
 
