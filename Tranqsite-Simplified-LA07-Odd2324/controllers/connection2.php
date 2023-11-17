@@ -1,5 +1,5 @@
 <?php
-    require "../config/database.php";
+    require "./config/database.php";
 
     $conn = new mysqli(
         $config["server"],
