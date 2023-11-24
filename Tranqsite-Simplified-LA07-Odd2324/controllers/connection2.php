@@ -8,6 +8,4 @@
         $config["database"]
     );
 
-
-
 ?>
